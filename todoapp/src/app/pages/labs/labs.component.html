@@ -1,0 +1,150 @@
+<div class="container">
+    <!-- Sección de Bienvenida -->
+    <h1>{{welcome}}</h1>
+
+    <!-- Lista de Tareas -->
+    <h2>
+        <ul>
+            @for (tarea of task; track tarea){
+            <li>{{tarea}}</li>
+            }
+        </ul>
+    </h2>
+
+    <hr />
+
+    <!-- Ejemplos de Interpolación -->
+    <h2>{{'Hola'.repeat(5)}}</h2>
+    <p>la suma de 3 + 3 es {{3+3}}</p>
+    <p>hola, soy {{name()}} y tengo {{edad}} años</p>
+
+    <hr />
+
+    <!-- Ejemplos de Property Binding -->
+    <input type="text" [placeholder]=name()>
+    <img [src]=mijo>
+    <button [disabled]="disabled">Click me</button>
+    <p>person:{{person.city}}</p>
+
+    <hr>
+
+    <!-- Eventos de Clic -->
+    <button (click)="clickHandler()">Clicki mi</button>
+    <button (dblclick)="dbclickHandler()">Clicki mi</button>
+
+    <!-- Eventos de Input -->
+    <p>changeHandler</p>
+    <input type="number" [value]=person.age (change)="changeHandler($event)">
+
+    <p>textHandler</p>
+    <input type="text" [value]=person.age (change)="changeHandler($event)">
+
+    <!-- Eventos de Teclado -->
+    <p>keydown</p>
+    <input type="number" [value]=person.age (keydown)="keyDownHandler($event)">
+
+    <p>keydown con combinación de teclas</p>
+    <input type="number" [value]=person.age (keydown.control.l)="clickHandler()">
+
+    <!-- Sección de Signals -->
+    <p>Signals</p>
+    <h1>input para renderizar la señal</h1>
+    <input type="text" [value]="nombreReactivo()" (change)="changeReactive($event)">
+    <h1>reaccion a la reactividad: {{nombreReactivo()}}</h1>
+</div>
+
+
+<div class="mio">
+    <h1>{{title}}</h1>
+    <ul>
+        @for(aprendizaje of listaAprendizaje; track aprendizaje){
+        <li>{{aprendizaje}}</li>
+        }
+    </ul>
+
+    <h2>exportar variables de TS a HTML</h2>
+    <p>{{title}}</p>
+
+
+    <h2>uso de 'for' en angular</h2>
+
+    <h2>datos primitivos</h2>
+    <p>poblacion de Mexico: {{population().Mexico}}</p>
+    <p>poblacion de Chile: {{population().Chile}}</p>
+    <p>poblacion de Colombia: {{population().Colombia}}</p>
+
+    <h2>Eventos</h2>
+    <p>evento click</p>
+    <button (click)="clicky()">evento click</button>
+    <p>evento keyDown</p>
+    <input type="text" (keydown)="keyDown()" placeholder="escribe algo">
+    <p>elevnto changeHanler</p>
+    <input type="text" (change)="algoCambio($event)" placeholder="escribe algo">
+    <p>Oprimiste una tecla?</p>
+    <input type="text" (keydown)="oprimirTecla($event)" placeholder="escribe algo">
+    <p>Entra a el input y presiona ctrl + l</p>
+    <input type="text" (keydown.control.l)="combinacionTeclas()" placeholder="escribe algo">
+
+
+    <h1>Señales!!!!!</h1>
+    <h2>Reactividad</h2>
+
+    <p>Valor de la variable: {{valorNativo()}}</p>
+    <input type="text" (change)="cambioReactivo($event)" placeholder="Cambia el nombre aqui: ">
+
+    <h1>lsito ya acabo lo mio aaaaa </h1>
+
+
+    <p>lista reactiva: </p>
+    <ul>
+        @for(item of listaRenderizar(); track item; let i = $index){
+        <li>{{i}}. {{item}}</li>
+        }
+    </ul>
+
+<h1>condicionales if</h1>
+
+@if(population().Mexico === 1){
+    <p>1 es igual a 1</p>
+}@else {
+    <p>Mexico no tiene 1 millon de habitantes</p>
+}
+
+<hr>
+
+<h1><br>
+formularios Reactivos</h1>
+<input type="color" [formControl]="controlColor">
+
+<p>color: {{controlColor.value}}</p>
+
+<br>
+<hr>
+<br>
+<h1>Formularios y estilos dinamicos con attr</h1>
+<svg>
+    <g>
+        <rect x = "0" y ="0" height = "100" width = "100" [attr.fill]="controlColor.value" />
+            
+    </g>
+</svg>
+
+<div>
+    <input type="number" [formControl]="widthControl" >
+<input type="number" [formControl]="heightControl"  >
+</div>
+
+<span class = "box" [style.width.px]="widthControl.value"></span>
+<span class = "box" [style.height.px]="heightControl.value"></span>
+
+<p><input type="text" [formControl]="nameControl" > <br>
+    <!-- @if (nameControl.invalid && nameControl.touched) {
+        <span class="messageError">
+            Nombre Invalido
+        </span>
+    } -->
+    <span class="messageError" [class.show] = "nameControl.invalid && nameControl.touched">
+        Nombre Invalido
+    </span>
+
+</p>

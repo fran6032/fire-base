@@ -1,0 +1,29 @@
+.container{
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+button{
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+.box{
+    width: 10px;
+    height: 10px;
+    background-color: #007bff;
+    display: block;
+}
+
+.messageError{
+    background-color: red;
+    color: whitesmoke;
+    opacity: 0;
+    transition: all linear .5s;
+}
+.messageError.show{
+    opacity: 1;
+}
